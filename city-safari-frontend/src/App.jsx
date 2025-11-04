@@ -1422,5 +1422,12 @@ function App() {
     </div>
   );
 }
+registry.addMapping("/**")
+        .allowedOrigins(
+            "https://city-safari-g68js5ljb-krishna-165s-projects.vercel.app",
+            "http://localhost:5173"  // for local dev (adjust if your local port is different)
+        )
+        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        .allowCredentials(true);
 
 export default App;
