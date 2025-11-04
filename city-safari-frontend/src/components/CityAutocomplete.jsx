@@ -9,7 +9,7 @@ const CityAutocomplete = ({ value, onChange, placeholder, label }) => {
   const wrapperRef = useRef(null);
 
   // OpenWeather API key from environment variable
-  const OPENWEATHER_API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
+  const OPENWEATHER_API_KEY = 'a098dd84820b25e918d1960b379378bc';
 
   // Close suggestions when clicking outside
   useEffect(() => {
@@ -111,13 +111,13 @@ const CityAutocomplete = ({ value, onChange, placeholder, label }) => {
           onChange={handleInputChange}
           onFocus={() => value.length >= 2 && suggestions.length > 0 && setShowSuggestions(true)}
           placeholder={placeholder}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 text-gray-900"
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 text-gray-900"
           autoComplete="off"
         />
         
         {isLoading && (
           <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-purple-600"></div>
+            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
           </div>
         )}
       </div>
@@ -129,9 +129,9 @@ const CityAutocomplete = ({ value, onChange, placeholder, label }) => {
             <div
               key={`${suggestion.name}-${suggestion.lat}-${suggestion.lon}-${index}`}
               onClick={() => handleSuggestionClick(suggestion)}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-purple-50 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0"
+              className="flex items-center gap-3 px-4 py-3 hover:bg-blue-50 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0"
             >
-              <MapPin size={18} className="text-purple-600 flex-shrink-0" />
+              <MapPin size={18} className="text-blue-600 flex-shrink-0" />
               <div className="flex-1">
                 <div className="text-gray-900 font-medium">{suggestion.name}</div>
                 <div className="text-sm text-gray-500">

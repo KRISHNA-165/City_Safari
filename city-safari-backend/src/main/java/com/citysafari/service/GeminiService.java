@@ -32,7 +32,7 @@ public class GeminiService {
 
     public DestinationReport generateTravelReport(String city, String fromCity) {
         // Build the transport section prompt
-        String transportPrompt = "";
+        String transportPrompt;
         if (fromCity != null && !fromCity.trim().isEmpty()) {
             transportPrompt = "  \"transport\": [{\"mode\": \"Flight/Train/Bus/Multi-modal\", \"operator\": \"Operator name\", \"route\": \"Direct/Via city\", \"description\": \"Detailed route description\", \"duration\": \"Travel time\", \"price\": \"Price range\", \"distance\": \"Distance in km\", \"availability\": \"Frequency\", \"recommendation\": \"Why choose this\"}],\n";
         } else {
@@ -57,12 +57,15 @@ public class GeminiService {
                 "}\n\n";
 
         if (fromCity != null && !fromCity.trim().isEmpty()) {
-            prompt += "IMPORTANT for 'transport' section:\n" +
-                    "- Provide 3-4 different transport options (Flight, Train, Bus) from " + fromCity + " to " + city + ".\n" +
-                    "- If direct flights are not available, suggest multi-modal routes (e.g., 'Take bus to nearest airport, then flight').\n" +
-                    "- Include realistic prices in local currency (₹ for India), duration, distance in km.\n" +
-                    "- For each option, provide: mode, operator name, route description, duration, price range, distance, availability/frequency, and recommendation.\n" +
-                    "- Example: If Kakinada to Chennai has no direct flight, suggest: 'Take bus/taxi to Rajahmundry Airport (30 km, 45 mins), then take IndiGo flight to Chennai (1h 15m)'.\n\n";
+            prompt += """
+                    IMPORTANT for 'transport' section:
+                    - Provide 3-4 different transport options (Flight, Train, Bus) from %s to %s.
+                    - If direct flights are not available, suggest multi-modal routes (e.g., 'Take bus to nearest airport, then flight').
+                    - Include realistic prices in local currency (₹ for India), duration, distance in km.
+                    - For each option, provide: mode, operator name, route description, duration, price range, distance, availability/frequency, and recommendation.
+                    - Example: If Kakinada to Chennai has no direct flight, suggest: 'Take bus/taxi to Rajahmundry Airport (30 km, 45 mins), then take IndiGo flight to Chennai (1h 15m)'.
+
+                    """.formatted(fromCity, city);
         }
 
         prompt += "IMPORTANT for 'hotelStays' section:\n" +

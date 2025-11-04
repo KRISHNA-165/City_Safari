@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { User, ArrowLeft, Bus, MapPin, Utensils, Calendar, CloudSun, LogOut, UserCircle, Clock, Trash2, Plane, Hotel } from 'lucide-react';
 import RouteMap from './components/RouteMap';
 import CityAutocomplete from './components/CityAutocomplete';
@@ -22,14 +22,14 @@ const Navbar = ({ setView, user, onLogout }) => {
           <>
             <button
               onClick={() => setView('Profile')}
-              className="flex items-center gap-2 px-6 py-2 bg-purple-400 text-white rounded-lg hover:bg-purple-500 transition"
+              className="flex items-center gap-2 px-6 py-2 bg-sky-400 text-white rounded-lg hover:bg-sky-500 transition"
             >
               <UserCircle size={20} />
               {user.fullName}
             </button>
             <button
               onClick={onLogout}
-              className="flex items-center gap-2 px-6 py-2 bg-white text-purple-600 rounded-lg hover:bg-gray-100 transition font-semibold"
+              className="flex items-center gap-2 px-6 py-2 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition font-semibold"
             >
               <LogOut size={20} />
               Logout
@@ -39,14 +39,14 @@ const Navbar = ({ setView, user, onLogout }) => {
           <>
             <button
               onClick={() => setView('SignUp')}
-              className="flex items-center gap-2 px-6 py-2 bg-purple-400 text-white rounded-lg hover:bg-purple-500 transition"
+              className="flex items-center gap-2 px-6 py-2 bg-sky-400 text-white rounded-lg hover:bg-sky-500 transition"
             >
               <User size={20} />
               Sign Up
             </button>
             <button
               onClick={() => setView('Login')}
-              className="px-6 py-2 bg-white text-purple-600 rounded-lg hover:bg-gray-100 transition font-semibold"
+              className="px-6 py-2 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition font-semibold"
             >
               Login
             </button>
@@ -124,14 +124,14 @@ const HomePage = ({ setView, setDestinationCity, setFromCity, user }) => {
       </div>
 
       {/* Features Section */}
-      <div className="bg-purple-50 py-16 px-4">
+      <div className="bg-sky-50 py-16 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Column */}
           <div>
-            <h2 className="text-3xl font-bold text-purple-900 mb-8">Why Choose City Safari?</h2>
+            <h2 className="text-3xl font-bold text-blue-900 mb-8">Why Choose City Safari?</h2>
             <div className="space-y-6">
               <div className="flex gap-4">
-                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                   1
                 </div>
                 <div>
@@ -140,7 +140,7 @@ const HomePage = ({ setView, setDestinationCity, setFromCity, user }) => {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                   2
                 </div>
                 <div>
@@ -149,7 +149,7 @@ const HomePage = ({ setView, setDestinationCity, setFromCity, user }) => {
                 </div>
               </div>
               <div className="flex gap-4">
-                <div className="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
                   3
                 </div>
                 <div>
@@ -162,30 +162,30 @@ const HomePage = ({ setView, setDestinationCity, setFromCity, user }) => {
 
           {/* Right Column */}
           <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-purple-900 mb-6">What We Offer</h2>
+            <h2 className="text-2xl font-bold text-blue-900 mb-6">What We Offer</h2>
             <ul className="space-y-4 text-gray-700">
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 font-bold">•</span>
+                <span className="text-blue-600 font-bold">•</span>
                 <span>Transportation guides and local transit information</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 font-bold">•</span>
+                <span className="text-blue-600 font-bold">•</span>
                 <span>Must-visit attractions with ratings and reviews</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 font-bold">•</span>
+                <span className="text-blue-600 font-bold">•</span>
                 <span>Local food recommendations and restaurant guides</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 font-bold">•</span>
+                <span className="text-blue-600 font-bold">•</span>
                 <span>Weather forecasts and best times to visit</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 font-bold">•</span>
+                <span className="text-blue-600 font-bold">•</span>
                 <span>Events and activities happening during your stay</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-purple-600 font-bold">•</span>
+                <span className="text-blue-600 font-bold">•</span>
                 <span>Essential travel tips from local experts</span>
               </li>
             </ul>
@@ -196,58 +196,58 @@ const HomePage = ({ setView, setDestinationCity, setFromCity, user }) => {
       {/* Services Section */}
       <div className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center text-purple-900 mb-4">Our Services</h2>
+          <h2 className="text-4xl font-bold text-center text-blue-900 mb-4">Our Services</h2>
           <p className="text-center text-gray-600 mb-12">Everything you need for the perfect trip</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
             {/* Service Card 1 */}
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <Bus className="text-purple-600" size={24} />
+              <div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                <Bus className="text-blue-600" size={24} />
               </div>
               <h3 className="font-bold text-lg mb-2">Transportation</h3>
               <p className="text-gray-600 text-sm mb-4">Complete guide to getting around</p>
-              <button className="text-purple-600 font-semibold text-sm hover:underline">Learn More →</button>
+              <button className="text-blue-600 font-semibold text-sm hover:underline">Learn More →</button>
             </div>
 
             {/* Service Card 2 */}
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <MapPin className="text-purple-600" size={24} />
+              <div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                <MapPin className="text-blue-600" size={24} />
               </div>
               <h3 className="font-bold text-lg mb-2">Attractions</h3>
               <p className="text-gray-600 text-sm mb-4">Discover must-visit places</p>
-              <button className="text-purple-600 font-semibold text-sm hover:underline">Learn More →</button>
+              <button className="text-blue-600 font-semibold text-sm hover:underline">Learn More →</button>
             </div>
 
             {/* Service Card 3 */}
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <Utensils className="text-purple-600" size={24} />
+              <div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                <Utensils className="text-blue-600" size={24} />
               </div>
               <h3 className="font-bold text-lg mb-2">Local Food</h3>
               <p className="text-gray-600 text-sm mb-4">Best restaurants and cuisine</p>
-              <button className="text-purple-600 font-semibold text-sm hover:underline">Learn More →</button>
+              <button className="text-blue-600 font-semibold text-sm hover:underline">Learn More →</button>
             </div>
 
             {/* Service Card 4 */}
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <Calendar className="text-purple-600" size={24} />
+              <div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                <Calendar className="text-blue-600" size={24} />
               </div>
               <h3 className="font-bold text-lg mb-2">Events</h3>
               <p className="text-gray-600 text-sm mb-4">Upcoming activities and festivals</p>
-              <button className="text-purple-600 font-semibold text-sm hover:underline">Learn More →</button>
+              <button className="text-blue-600 font-semibold text-sm hover:underline">Learn More →</button>
             </div>
 
             {/* Service Card 5 */}
             <div className="bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                <CloudSun className="text-purple-600" size={24} />
+              <div className="w-12 h-12 bg-sky-100 rounded-full flex items-center justify-center mb-4">
+                <CloudSun className="text-blue-600" size={24} />
               </div>
               <h3 className="font-bold text-lg mb-2">Weather</h3>
               <p className="text-gray-600 text-sm mb-4">Current and forecast information</p>
-              <button className="text-purple-600 font-semibold text-sm hover:underline">Learn More →</button>
+              <button className="text-blue-600 font-semibold text-sm hover:underline">Learn More →</button>
             </div>
           </div>
         </div>
@@ -305,7 +305,7 @@ const LoginPage = ({ setView, onLoginSuccess }) => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-purple-900 mb-2">Welcome back</h2>
+  <h2 className="text-3xl font-bold text-blue-900 mb-2">Welcome to City Safari</h2>
         <p className="text-gray-600 mb-6">Login to continue your journey</p>
 
         {error && (
@@ -322,7 +322,7 @@ const LoginPage = ({ setView, onLoginSuccess }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
               required
               disabled={loading}
             />
@@ -335,7 +335,7 @@ const LoginPage = ({ setView, onLoginSuccess }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
               required
               disabled={loading}
             />
@@ -343,7 +343,7 @@ const LoginPage = ({ setView, onLoginSuccess }) => {
 
           <button
             type="submit"
-            className="w-full py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition disabled:bg-purple-300"
+            className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-blue-300"
             disabled={loading}
           >
             {loading ? 'Logging in...' : 'Login'}
@@ -352,7 +352,7 @@ const LoginPage = ({ setView, onLoginSuccess }) => {
 
         <p className="text-center text-gray-600 mt-6">
           Don't have an account?{' '}
-          <button onClick={() => setView('SignUp')} className="text-purple-600 font-semibold hover:underline">
+          <button onClick={() => setView('SignUp')} className="text-blue-600 font-semibold hover:underline">
             Sign Up
           </button>
         </p>
@@ -402,7 +402,7 @@ const SignUpPage = ({ setView }) => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-md">
-        <h2 className="text-3xl font-bold text-purple-900 mb-2">Create your account</h2>
+  <h2 className="text-3xl font-bold text-blue-900 mb-2">Create your account</h2>
         <p className="text-gray-600 mb-6">Join City Safari today</p>
 
         {error && (
@@ -419,7 +419,7 @@ const SignUpPage = ({ setView }) => {
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
               placeholder="Enter your full name"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
               required
               disabled={loading}
             />
@@ -432,7 +432,7 @@ const SignUpPage = ({ setView }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
               required
               disabled={loading}
             />
@@ -445,7 +445,7 @@ const SignUpPage = ({ setView }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Create a password (min 6 characters)"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
               required
               minLength="6"
               disabled={loading}
@@ -454,7 +454,7 @@ const SignUpPage = ({ setView }) => {
 
           <button
             type="submit"
-            className="w-full py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition disabled:bg-purple-300"
+            className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition disabled:bg-blue-300"
             disabled={loading}
           >
             {loading ? 'Creating account...' : 'Sign Up'}
@@ -463,7 +463,7 @@ const SignUpPage = ({ setView }) => {
 
         <p className="text-center text-gray-600 mt-6">
           Already have an account?{' '}
-          <button onClick={() => setView('Login')} className="text-purple-600 font-semibold hover:underline">
+          <button onClick={() => setView('Login')} className="text-blue-600 font-semibold hover:underline">
             Login
           </button>
         </p>
@@ -473,10 +473,27 @@ const SignUpPage = ({ setView }) => {
 };
 
 // DestinationReportPage Component
-const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
+const DestinationReportPage = ({ setView, destinationCity, fromCity, user }) => {
   const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Refs for sticky tab scroll targets
+  const overviewRef = useRef(null);
+  const mapRef = useRef(null);
+  const transportRef = useRef(null);
+  const placesRef = useRef(null);
+  const foodRef = useRef(null);
+  const hotelsRef = useRef(null);
+  const tipsRef = useRef(null);
+  const weatherRef = useRef(null);
+  const eventsRef = useRef(null);
+
+  const scrollToRef = (ref) => {
+    if (!ref?.current) return;
+    const y = ref.current.getBoundingClientRect().top + window.scrollY - 90; // account for sticky tabs
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  };
 
   useEffect(() => {
     if (destinationCity) {
@@ -487,6 +504,10 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
       let url = 'http://localhost:8080/api/report?city=' + encodeURIComponent(destinationCity);
       if (fromCity && fromCity.trim()) {
         url += '&fromCity=' + encodeURIComponent(fromCity);
+      }
+      // Attach userId if available so backend can associate search history
+      if (user && user.userId) {
+        url += '&userId=' + encodeURIComponent(user.userId);
       }
       
       fetch(url)
@@ -509,8 +530,11 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <div className="text-white text-2xl">Loading your travel report...</div>
+      <div className="flex items-center justify-center py-24">
+        <div className="bg-white/90 rounded-xl shadow-lg px-8 py-6 flex items-center gap-4">
+          <div className="h-5 w-5 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin" />
+          <div className="text-gray-800 text-lg font-semibold">Loading your travel report...</div>
+        </div>
       </div>
     );
   }
@@ -523,7 +547,7 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
           <p className="text-gray-700 mb-6">{error}</p>
           <button
             onClick={() => setView('Home')}
-            className="w-full py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+            className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
           >
             Back to Home
           </button>
@@ -551,21 +575,90 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
         </div>
       </div>
 
+      {/* Summary strip */}
+      <div className="bg-white border-b">
+        <div className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 text-sm">
+          <div className="flex items-center gap-2 p-3 rounded-md bg-sky-50">
+            <MapPin className="text-blue-600" size={18} />
+            <div>
+              <p className="text-gray-500">Destination</p>
+              <p className="font-semibold text-gray-800">{report?.city || destinationCity}</p>
+            </div>
+          </div>
+          {fromCity && (
+            <div className="flex items-center gap-2 p-3 rounded-md bg-blue-50">
+              <Bus className="text-blue-600" size={18} />
+              <div>
+                <p className="text-gray-500">From</p>
+                <p className="font-semibold text-gray-800">{fromCity}</p>
+              </div>
+            </div>
+          )}
+          <div className="flex items-center gap-2 p-3 rounded-md bg-green-50">
+            <Plane className="text-green-600" size={18} />
+            <div>
+              <p className="text-gray-500">Transport</p>
+              <p className="font-semibold text-gray-800">{report?.transport?.length || 0}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 p-3 rounded-md bg-yellow-50">
+            <MapPin className="text-yellow-600" size={18} />
+            <div>
+              <p className="text-gray-500">Places</p>
+              <p className="font-semibold text-gray-800">{report?.mustVisitPlaces?.length || 0}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 p-3 rounded-md bg-pink-50">
+            <Utensils className="text-pink-600" size={18} />
+            <div>
+              <p className="text-gray-500">Food</p>
+              <p className="font-semibold text-gray-800">{report?.localFood?.length || 0}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 p-3 rounded-md bg-sky-50">
+            <CloudSun className="text-sky-600" size={18} />
+            <div>
+              <p className="text-gray-500">Now</p>
+              <p className="font-semibold text-gray-800">{report?.weather?.current?.temperature || '—'}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Sticky tabs */}
+      <div className="bg-white/80 backdrop-blur sticky top-0 z-30 border-b">
+        <div className="max-w-7xl mx-auto px-3">
+          <div className="flex gap-2 overflow-x-auto no-scrollbar py-2 text-sm">
+            <button onClick={() => scrollToRef(overviewRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Overview</button>
+            {fromCity && <button onClick={() => scrollToRef(mapRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Map</button>}
+            <button onClick={() => scrollToRef(transportRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Transport</button>
+            <button onClick={() => scrollToRef(placesRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Places</button>
+            <button onClick={() => scrollToRef(foodRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Food</button>
+            <button onClick={() => scrollToRef(hotelsRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Hotels</button>
+            <button onClick={() => scrollToRef(tipsRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Tips</button>
+            <button onClick={() => scrollToRef(weatherRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Weather</button>
+            <button onClick={() => scrollToRef(eventsRef)} className="px-3 py-1.5 rounded-full border text-gray-700 hover:bg-gray-50 whitespace-nowrap">Events</button>
+          </div>
+        </div>
+      </div>
+
       {/* Content Body */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
+      <div ref={overviewRef} className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
         {/* Main Column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Route Map Card - Show at the top */}
           {fromCity && fromCity.trim() && (
-            <RouteMap 
-              fromCity={fromCity} 
-              destinationCity={destinationCity}
-            />
+            <div ref={mapRef}>
+              <RouteMap 
+                fromCity={fromCity} 
+                destinationCity={destinationCity}
+              />
+            </div>
           )}
 
           {/* Transport Card - Only show if fromCity was provided and transport data exists */}
           {fromCity && fromCity.trim() && report?.transport && report.transport.length > 0 && (
-            <div className="bg-white rounded-lg shadow-lg p-6">
+            <div ref={transportRef} className="bg-white rounded-lg shadow-lg p-6">
               <div className="flex items-center gap-3 mb-4">
                 <Plane className="text-blue-600" size={28} />
                 <h2 className="text-2xl font-bold text-gray-800">
@@ -672,12 +765,12 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
           {/* Getting Around Card */}
           <div className="bg-white rounded-lg shadow-lg p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Bus className="text-purple-600" size={28} />
+              <Bus className="text-blue-600" size={28} />
               <h2 className="text-2xl font-bold text-gray-800">Getting Around</h2>
             </div>
             <div className="space-y-4">
               {report?.gettingAround?.map((item, index) => (
-                <div key={index} className="border-l-4 border-purple-500 pl-4 py-2">
+                <div key={index} className="border-l-4 border-blue-500 pl-4 py-2">
                   <h3 className="font-bold text-lg text-gray-800">{item.mode}: {item.name}</h3>
                   <p className="text-gray-600"><strong>Route:</strong> {item.route}</p>
                   <p className="text-gray-600"><strong>Status:</strong> {item.status}</p>
@@ -689,9 +782,9 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
           </div>
 
           {/* Must-Visit Places Card */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div ref={placesRef} className="bg-white rounded-lg shadow-lg p-6">
             <div className="flex items-center gap-3 mb-4">
-              <MapPin className="text-purple-600" size={28} />
+              <MapPin className="text-blue-600" size={28} />
               <h2 className="text-2xl font-bold text-gray-800">Must-Visit Places</h2>
             </div>
             <div className="space-y-6">
@@ -736,9 +829,9 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
           </div>
 
           {/* Local Food Card */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div ref={foodRef} className="bg-white rounded-lg shadow-lg p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Utensils className="text-purple-600" size={28} />
+              <Utensils className="text-blue-600" size={28} />
               <h2 className="text-2xl font-bold text-gray-800">Local Food & Restaurants</h2>
             </div>
 
@@ -754,7 +847,7 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
                       <h4 className="font-bold text-lg text-gray-800">{food.restaurantName}</h4>
                       <div className="flex items-center gap-2">
                         <a
-                          className="px-3 py-1 bg-purple-600 text-white text-sm rounded hover:bg-purple-700"
+                          className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
                           href={`https://www.google.com/search?q=${encodeURIComponent(`${food.restaurantName} reservation`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -802,9 +895,9 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
           </div>
 
           {/* Hotel Stay Card */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div ref={hotelsRef} className="bg-white rounded-lg shadow-lg p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Hotel className="text-purple-600" size={28} />
+              <Hotel className="text-blue-600" size={28} />
               <h2 className="text-2xl font-bold text-gray-800">Hotel Stay</h2>
             </div>
 
@@ -923,9 +1016,9 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
         {/* Sidebar Column */}
         <div className="lg:col-span-1 space-y-6">
           {/* Weather Card */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div ref={weatherRef} className="bg-white rounded-lg shadow-lg p-6">
             <div className="flex items-center gap-3 mb-4">
-              <CloudSun className="text-purple-600" size={28} />
+              <CloudSun className="text-blue-600" size={28} />
               <h2 className="text-2xl font-bold text-gray-800">Weather</h2>
             </div>
             {report?.weather?.current && (
@@ -959,16 +1052,16 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
           </div>
 
           {/* Events Card */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div ref={eventsRef} className="bg-white rounded-lg shadow-lg p-6">
             <div className="flex items-center gap-3 mb-4">
-              <Calendar className="text-purple-600" size={28} />
+              <Calendar className="text-blue-600" size={28} />
               <h2 className="text-2xl font-bold text-gray-800">Events & Activities</h2>
             </div>
             <div className="space-y-4">
               {report?.events?.map((event, index) => (
                 <div key={index} className="border-l-4 border-green-500 pl-4 py-2">
                   <h3 className="font-bold text-gray-800">{event.name}</h3>
-                  <span className="inline-block bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded mb-1">
+                  <span className="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded mb-1">
                     {event.category}
                   </span>
                   <p className="text-sm text-gray-600">{event.description}</p>
@@ -984,12 +1077,12 @@ const DestinationReportPage = ({ setView, destinationCity, fromCity }) => {
           </div>
 
           {/* Travel Tips Card */}
-          <div className="bg-white rounded-lg shadow-lg p-6">
+          <div ref={tipsRef} className="bg-white rounded-lg shadow-lg p-6">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Travel Tips</h2>
             <ul className="space-y-3">
               {report?.travelTips?.map((item, index) => (
                 <li key={index} className="flex items-start gap-2">
-                  <span className="text-purple-600 font-bold mt-1">•</span>
+                  <span className="text-blue-600 font-bold mt-1">•</span>
                   <span className="text-gray-700">{item.tip}</span>
                 </li>
               ))}
@@ -1006,16 +1099,26 @@ const HistoryPage = ({ setView, setDestinationCity, user }) => {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    // Load search history from localStorage
-    const savedHistory = localStorage.getItem(`searchHistory_${user.userId}`);
-    if (savedHistory) {
+    // Load search history from backend
+    const fetchHistory = async () => {
       try {
-        setHistory(JSON.parse(savedHistory));
-      } catch (error) {
-        console.error('Error loading history:', error);
+        const res = await fetch(`http://localhost:8080/api/history?userId=${encodeURIComponent(user.userId)}`);
+        if (!res.ok) throw new Error('Failed to fetch history');
+        const data = await res.json();
+        // Map backend response to expected format
+        const mapped = data.map(item => ({
+          id: item.id,
+          city: item.city,
+          timestamp: item.searchDate
+        }));
+        setHistory(mapped);
+      } catch (err) {
+        console.error('Error loading history from server:', err);
         setHistory([]);
       }
-    }
+    };
+
+    fetchHistory();
   }, [user.userId]);
 
   const handleViewReport = (city) => {
@@ -1025,15 +1128,41 @@ const HistoryPage = ({ setView, setDestinationCity, user }) => {
 
   const handleClearHistory = () => {
     if (window.confirm('Are you sure you want to clear all search history?')) {
-      localStorage.removeItem(`searchHistory_${user.userId}`);
-      setHistory([]);
+      // Call backend to clear history
+      fetch(`http://localhost:8080/api/history?userId=${encodeURIComponent(user.userId)}`, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            setHistory([]);
+          } else {
+            alert('Failed to clear history: ' + (data.message || 'unknown'));
+          }
+        })
+        .catch(err => {
+          console.error('Error clearing history:', err);
+          alert('Failed to clear history');
+        });
     }
   };
 
   const handleDeleteItem = (index) => {
-    const newHistory = history.filter((_, i) => i !== index);
-    setHistory(newHistory);
-    localStorage.setItem(`searchHistory_${user.userId}`, JSON.stringify(newHistory));
+    const item = history[index];
+    if (!item || !item.id) return;
+    // Delete from backend
+    fetch(`http://localhost:8080/api/history/${item.id}`, { method: 'DELETE' })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          const newHistory = history.filter((_, i) => i !== index);
+          setHistory(newHistory);
+        } else {
+          alert('Failed to delete item: ' + (data.message || 'unknown'));
+        }
+      })
+      .catch(err => {
+        console.error('Error deleting history item:', err);
+        alert('Failed to delete item');
+      });
   };
 
   return (
@@ -1043,7 +1172,7 @@ const HistoryPage = ({ setView, setDestinationCity, user }) => {
           <div className="flex items-center gap-4">
             <button
               onClick={() => setView('Home')}
-              className="flex items-center gap-2 text-white hover:text-purple-200"
+              className="flex items-center gap-2 text-white hover:text-blue-200"
             >
               <ArrowLeft size={24} />
             </button>
@@ -1052,7 +1181,7 @@ const HistoryPage = ({ setView, setDestinationCity, user }) => {
                 <Clock size={36} />
                 Travel History
               </h2>
-              <p className="text-purple-200 mt-2">Your recent destination searches</p>
+              <p className="text-blue-200 mt-2">Your recent destination searches</p>
             </div>
           </div>
           {history.length > 0 && (
@@ -1073,7 +1202,7 @@ const HistoryPage = ({ setView, setDestinationCity, user }) => {
             <p className="text-gray-600 mb-6">Start exploring destinations to build your travel history!</p>
             <button
               onClick={() => setView('Home')}
-              className="px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
             >
               Explore Destinations
             </button>
@@ -1082,9 +1211,9 @@ const HistoryPage = ({ setView, setDestinationCity, user }) => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {history.map((item, index) => (
               <div key={index} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition group">
-                <div className="bg-gradient-to-r from-purple-500 to-indigo-600 p-6">
+                <div className="bg-gradient-to-r from-sky-400 to-blue-600 p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">{item.city}</h3>
-                  <p className="text-purple-100 text-sm flex items-center gap-2">
+                  <p className="text-blue-100 text-sm flex items-center gap-2">
                     <Clock size={16} />
                     {new Date(item.timestamp).toLocaleDateString('en-US', {
                       year: 'numeric',
@@ -1103,7 +1232,7 @@ const HistoryPage = ({ setView, setDestinationCity, user }) => {
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleViewReport(item.city)}
-                      className="flex-1 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+                      className="flex-1 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
                     >
                       View Report
                     </button>
@@ -1146,10 +1275,10 @@ const ProfilePage = ({ user, setView }) => {
     <div className="min-h-screen flex items-center justify-center px-4 py-12">
       <div className="bg-white rounded-xl shadow-lg p-8 w-full max-w-2xl">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-3xl font-bold text-purple-900">My Profile</h2>
+          <h2 className="text-3xl font-bold text-blue-900">My Profile</h2>
           <button
             onClick={() => setView('Home')}
-            className="flex items-center gap-2 text-purple-600 hover:text-purple-700"
+            className="flex items-center gap-2 text-blue-600 hover:text-blue-700"
           >
             <ArrowLeft size={20} />
             Back to Home
@@ -1159,7 +1288,7 @@ const ProfilePage = ({ user, setView }) => {
         <div className="space-y-6">
           {/* Profile Header */}
           <div className="flex items-center gap-6 pb-6 border-b">
-            <div className="w-24 h-24 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center">
+            <div className="w-24 h-24 bg-gradient-to-br from-sky-400 to-blue-600 rounded-full flex items-center justify-center">
               <UserCircle size={60} className="text-white" />
             </div>
             <div>
@@ -1173,19 +1302,19 @@ const ProfilePage = ({ user, setView }) => {
 
           {/* Profile Details */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-sky-50 rounded-lg p-4">
               <h4 className="font-semibold text-gray-700 mb-2">User ID</h4>
               <p className="text-gray-900">{user.userId}</p>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-sky-50 rounded-lg p-4">
               <h4 className="font-semibold text-gray-700 mb-2">Email</h4>
               <p className="text-gray-900">{user.email}</p>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-sky-50 rounded-lg p-4">
               <h4 className="font-semibold text-gray-700 mb-2">Full Name</h4>
               <p className="text-gray-900">{user.fullName}</p>
             </div>
-            <div className="bg-purple-50 rounded-lg p-4">
+            <div className="bg-sky-50 rounded-lg p-4">
               <h4 className="font-semibold text-gray-700 mb-2">Member Since</h4>
               <p className="text-gray-900">
                 {new Date().toLocaleDateString('en-US', { 
@@ -1198,20 +1327,20 @@ const ProfilePage = ({ user, setView }) => {
           </div>
 
           {/* Account Stats */}
-          <div className="bg-gradient-to-r from-purple-500 to-indigo-600 rounded-lg p-6 text-white">
+          <div className="bg-gradient-to-r from-sky-400 to-blue-600 rounded-lg p-6 text-white">
             <h4 className="font-semibold mb-4 text-lg">Account Statistics</h4>
             <div className="grid grid-cols-3 gap-4">
               <div className="text-center">
                 <p className="text-3xl font-bold">{historyCount}</p>
-                <p className="text-sm text-purple-100">Cities Explored</p>
+                <p className="text-sm text-blue-100">Cities Explored</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl font-bold">0</p>
-                <p className="text-sm text-purple-100">Saved Destinations</p>
+                <p className="text-sm text-blue-100">Saved Destinations</p>
               </div>
               <div className="text-center">
                 <p className="text-3xl font-bold">0</p>
-                <p className="text-sm text-purple-100">Reviews Written</p>
+                <p className="text-sm text-blue-100">Reviews Written</p>
               </div>
             </div>
           </div>
@@ -1220,13 +1349,13 @@ const ProfilePage = ({ user, setView }) => {
           <div className="flex gap-4">
             <button
               onClick={() => setView('Home')}
-              className="flex-1 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition"
+              className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
             >
               Explore Destinations
             </button>
             <button
               onClick={() => setView('History')}
-              className="flex-1 py-3 border-2 border-purple-600 text-purple-600 rounded-lg font-semibold hover:bg-purple-50 transition"
+              className="flex-1 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-semibold hover:bg-blue-50 transition"
             >
               View History
             </button>
@@ -1274,7 +1403,7 @@ function App() {
   // If not logged in, show only login/signup pages
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600">
+      <div className="min-h-screen bg-gradient-to-r from-sky-400 to-blue-600">
         {view === 'Login' && <LoginPage setView={setView} onLoginSuccess={handleLoginSuccess} />}
         {view === 'SignUp' && <SignUpPage setView={setView} />}
       </div>
@@ -1283,13 +1412,13 @@ function App() {
 
   // If logged in, show full app
   return (
-    <div className="min-h-screen bg-gradient-to-r from-purple-500 to-indigo-600">
+    <div className="min-h-screen bg-gradient-to-r from-sky-400 to-blue-600">
       <Navbar setView={setView} user={user} onLogout={handleLogout} />
       
       {view === 'Home' && <HomePage setView={setView} setDestinationCity={setDestinationCity} setFromCity={setFromCity} user={user} />}
       {view === 'History' && <HistoryPage setView={setView} setDestinationCity={setDestinationCity} user={user} />}
       {view === 'Profile' && <ProfilePage user={user} setView={setView} />}
-      {view === 'Report' && <DestinationReportPage setView={setView} destinationCity={destinationCity} fromCity={fromCity} />}
+  {view === 'Report' && <DestinationReportPage setView={setView} destinationCity={destinationCity} fromCity={fromCity} user={user} />}
     </div>
   );
 }
